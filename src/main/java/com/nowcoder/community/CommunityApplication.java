@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息：V2.5 增加登陆、退出登陆功能 20191123
+//版本信息：V2.6 增加显示登陆信息功能 20191123

@@ -11,7 +11,7 @@ import java.util.Properties;
 /**
  * @author Song Weiwei
  * @date 2019-11-21
- * SpringBoot没有对 kaptcha 包做整合,需要自己做一些配置，使之能够加载到spring容器中）
+ * SpringBoot没有对 kaptcha 包做整合,需要自己做一些配置，使之能够加载到spring容器中（装配第三方的bean）
  */
 
 @Configuration
