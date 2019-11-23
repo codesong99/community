@@ -4,6 +4,7 @@ package com.nowcoder.community.util;
  * @author Song Weiwei
  * @date 2019-11-20
  * 常量接口 （激活账户）
+ * 常量接口 （登陆账号）
  */
 public interface CommunityConstant {
 
@@ -21,4 +22,15 @@ public interface CommunityConstant {
      * 激活失败
      */
     int ACTIVATION_FAILURE = 2;
+
+    /**
+     * 默认状态下 登陆凭证的超时时间
+      */
+    int DEFAULY_EXPIRED_SECONDS = 3600 * 12; //12小时
+
+    /**
+     * 记住状态下 登陆凭证的超时时间
+     */
+    int REMEMBER_EXPIRED_SECONDS = 3600 * 24 * 100; //100天
+
 }
