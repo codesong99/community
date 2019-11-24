@@ -26,6 +26,8 @@ import java.util.Random;
  * 注册业务 register
  * 登陆功能 login
  * 退出登陆 logout
+ * 查询凭证 findLoginTicket
+ * 更新头像 updateHeader
  */
 
 @Service
@@ -177,6 +179,11 @@ public class UserService implements CommunityConstant {
     // 查询凭证
     public LoginTicket findLoginTicket(String ticket) {
         return loginTicketMapper.selectByTicket(ticket);
+    }
+
+    // 更新头像
+    public int updateHeader(int userId, String headerUrl) {
+        return userMapper.updateHeader(userId, headerUrl);
     }
 
 }
