@@ -20,6 +20,8 @@ import java.util.*;
  * @author Song Weiwei
  * @date 2019-11-15
  * 测试用，可删除
+ * cookie示例 session示例
+ * AJAX示例
  */
 
 @Controller
@@ -197,5 +199,13 @@ public class AlphaController {
         return "get session";
     }
 
+    // ajax示例(使用jQuery发送AJAX请求)
+    @RequestMapping(path = "/ajax", method = RequestMethod.POST)
+    @ResponseBody
+    public String testAjax(String name, int age) {
+        System.out.println(name);
+        System.out.println(age);
+        return CommunityUtil.getJSONString(0,"操作成功");
+    }
 
 }
