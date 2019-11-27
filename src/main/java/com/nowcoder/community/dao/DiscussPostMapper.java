@@ -11,6 +11,7 @@ import java.util.List;
  * @date 2019-11-17
  * 查询帖子
  * 增加帖子
+ * 帖子详情
  */
 
 @Mapper
@@ -24,6 +25,10 @@ public interface DiscussPostMapper {
     //即动态SQL如果只有一个参数，则参数必须取别名
     int selectDiscussPostRows(@Param("userId") int userId);
 
+    // 增加帖子
     int insertDiscussPost(DiscussPost discussPost);
+
+    // 帖子详情
+    DiscussPost selectDiscussPostById(int id);
 
 }

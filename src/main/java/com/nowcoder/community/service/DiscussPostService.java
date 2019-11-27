@@ -14,6 +14,7 @@ import java.util.List;
  * @date 2019-11-17
  * 显示讨论区帖子
  * 发布帖子
+ * 帖子详情
  */
 @Service
 public class DiscussPostService {
@@ -46,5 +47,10 @@ public class DiscussPostService {
         post.setContent(sensitiveFilter.filter(post.getContent()));
 
         return discussPostMapper.insertDiscussPost(post);
+    }
+
+    // 帖子详情
+    public DiscussPost findDiscussPostById(int id) {
+        return discussPostMapper.selectDiscussPostById(id);
     }
 }
