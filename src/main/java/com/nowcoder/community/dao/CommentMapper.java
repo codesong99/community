@@ -9,6 +9,7 @@ import java.util.List;
  * @author Song Weiwei
  * @date 2019-11-26
  * 显示评论
+ * 添加评论
  */
 
 @Mapper
@@ -20,5 +21,7 @@ public interface CommentMapper {
     // 查询评论数量
     int selectCountByEntity(int entityType, int entityId);
 
+    // 添加评论
+    int insertComment(Comment comment);
 
 }

@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息：帖子详情、事务管理、显示评论 20191127
+//版本信息： 增加评论 20191128

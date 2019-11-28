@@ -12,6 +12,7 @@ import java.util.List;
  * 查询帖子
  * 增加帖子
  * 帖子详情
+ * 更新帖子评论数量
  */
 
 @Mapper
@@ -30,5 +31,8 @@ public interface DiscussPostMapper {
 
     // 帖子详情
     DiscussPost selectDiscussPostById(int id);
+
+    // 更新帖子评论数量
+    int updateCommentCount(int id, int commentCount);
 
 }
