@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 增加评论 20191128
+//版本信息： 增加 私信列表（及私信详情）功能 20191130
