@@ -20,6 +20,7 @@ import java.util.Map;
  * @author Song Weiwei
  * @date 2019-11-18
  * 首页
+ * 统一处理异常
  */
 
 @Controller
@@ -53,7 +54,12 @@ public class HomeController {
         model.addAttribute("discussPosts", discussPosts);
         //返回模板的路径，resource->templates->index.html
         return "/index";
+    }
 
+    // 统一处理异常
+    @RequestMapping(path = "/error", method = RequestMethod.GET)
+    public String getErrorPage() {
+        return "/error/500";
     }
 
 }

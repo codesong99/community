@@ -9,6 +9,7 @@ import java.util.List;
  * @author Song Weiwei
  * @date 2019-11-29
  * 私信列表
+ * 发送私信
  */
 
 @Mapper
@@ -28,5 +29,11 @@ public interface MessageMapper {
 
     // 查询未读私信数量(所有会话 & 单个会话)
     int selectLetterUnreadCount(int userId, String conversationId);
+
+    // 发送私信
+    int insertMessage(Message message);
+
+    // 修改消息状态
+    int updateStatus(List<Integer> ids, int status);
 
 }

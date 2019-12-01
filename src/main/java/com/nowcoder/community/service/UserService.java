@@ -28,6 +28,7 @@ import java.util.Random;
  * 退出登陆 logout
  * 查询凭证 findLoginTicket
  * 更新头像 updateHeader
+ * 发送私信 （通过username查找user）
  */
 
 @Service
@@ -184,6 +185,11 @@ public class UserService implements CommunityConstant {
     // 更新头像
     public int updateHeader(int userId, String headerUrl) {
         return userMapper.updateHeader(userId, headerUrl);
+    }
+
+    // 发送私信 (通过username查找user)
+    public User findUserByName(String username) {
+        return userMapper.selectByName(username);
     }
 
 }

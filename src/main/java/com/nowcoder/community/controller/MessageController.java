@@ -5,6 +5,7 @@ import com.nowcoder.community.entity.Page;
 import com.nowcoder.community.entity.User;
 import com.nowcoder.community.service.MessageService;
 import com.nowcoder.community.service.UserService;
+import com.nowcoder.community.util.CommunityUtil;
 import com.nowcoder.community.util.HostHolder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,17 +13,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Song Weiwei
  * @date 2019-11-29
- * 私信列表
- * 私信详情
+ * 私信列表 私信详情
+ * 发送私信
  */
 
 @Controller
@@ -40,6 +39,7 @@ public class MessageController {
     // 私信列表
     @RequestMapping(path = "/letter/list", method = RequestMethod.GET)
     public String getLetterList(Model model, Page page) {
+        //Integer.valueOf("abc"); // 人为制造500错误 普通请求
         User user = hostHolder.getUser();
         // 分页信息
         page.setLimit(5);
@@ -98,10 +98,16 @@ public class MessageController {
         // 私信目标
         model.addAttribute("target", getLetterTarget(conversationId));
 
+        // 设置为已读
+        List<Integer> ids = getLetterIds(letterList);
+        if (!ids.isEmpty()) {
+            messageService.readMessage(ids);
+        }
+
         return "/site/letter-detail";
     }
 
-    // 获取私信目标
+    // 函数-获取私信目标
     private User getLetterTarget(String conversationId) {
         String[] ids = conversationId.split("_");
         int id0 = Integer.parseInt(ids[0]);
@@ -112,8 +118,47 @@ public class MessageController {
         } else {
             return userService.findUserById(id0);
         }
+    }
 
+    // 函数-获取未读消息id
+    public List<Integer> getLetterIds(List<Message> letterList) {
+        List<Integer> ids = new ArrayList<>();
 
+        if (letterList != null) {
+            for (Message message: letterList) {
+                // 消息未读 & 接收者
+                if (message.getStatus() == 0 && hostHolder.getUser().getId() == message.getToId()) {
+                    ids.add(message.getId());
+                }
+            }
+        }
+        return ids;
+    }
+
+    // 发送私信
+    @RequestMapping(path = "/letter/send", method = RequestMethod.POST)
+    @ResponseBody   // 异步请求
+    public String sendLetter(String toName, String content) {
+        Integer.valueOf("abc"); // 人为制造500错误 异步请求
+        // 获取发送对象
+        User target = userService.findUserByName(toName);
+        if (target == null) {
+            return CommunityUtil.getJSONString(1, "目标用户不存在!");
+        }
+        Message message = new Message();
+        message.setFromId(hostHolder.getUser().getId());
+        message.setToId(target.getId());
+        // ConversationId: 小id_大id
+        if (message.getFromId() < message.getToId()) {
+            message.setConversationId(message.getFromId() + "_" + message.getToId());
+        } else {
+            message.setConversationId(message.getToId() + "_" + message.getFromId());
+        }
+        message.setContent(content);
+        message.setCreateTime(new Date());
+        messageService.addMessage(message);
+
+        return CommunityUtil.getJSONString(0);
     }
 
 }
