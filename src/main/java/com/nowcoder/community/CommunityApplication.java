@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： Spring整合Redis 20191202
+//版本信息： 点赞 20191202

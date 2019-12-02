@@ -11,7 +11,7 @@ public class Comment {
 
     private int id;
     private int userId;
-    private int entityType;
+    private int entityType; //1:对帖子 2：对评论
     private int entityId;
     private int targetId;
     private String content;
