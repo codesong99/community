@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 发送私信、统一异常处理、统一记录日志 20191201
+//版本信息： Spring整合Redis 20191202
