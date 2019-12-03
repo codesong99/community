@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 点赞 20191202
+//版本信息： 我收到的赞 20191203
