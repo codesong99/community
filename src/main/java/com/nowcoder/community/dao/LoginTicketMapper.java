@@ -7,9 +7,11 @@ import org.apache.ibatis.annotations.*;
  * @author Song Weiwei
  * @date 2019-11-23
  * 登陆成功凭证(Ticket)
+ * 使用redis优化后不推荐使用
  */
 
 @Mapper
+@Deprecated
 public interface LoginTicketMapper {
 
     @Insert({
