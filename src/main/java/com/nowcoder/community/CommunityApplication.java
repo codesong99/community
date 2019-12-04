@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 关注、取消关注 20191203
+//版本信息： 关注列表、粉丝列表 20191204
