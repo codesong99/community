@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 关注列表、粉丝列表 20191204
+//版本信息： 阻塞队列测试 20191204
