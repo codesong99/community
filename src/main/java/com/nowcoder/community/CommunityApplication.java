@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： spring整合kafka 20191205
+//版本信息： 发送系统通知 20191205
