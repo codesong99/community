@@ -12,4 +12,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 阻塞队列测试 20191204
+//版本信息： spring整合kafka 20191205
