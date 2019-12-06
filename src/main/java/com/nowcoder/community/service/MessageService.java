@@ -15,6 +15,8 @@ import java.util.List;
  * @date 2019-11-29
  * 私信列表
  * 发送私信
+ * 系统通知列表
+ * 系统通知详情
  */
 
 @Service
@@ -56,6 +58,28 @@ public class MessageService {
     // 读取消息（改变状态）
     public int readMessage(List<Integer> ids) {
         return messageMapper.updateStatus(ids, 1);
+    }
+
+    // 通知列表
+    // 查询某个主题下最新的通知
+    public Message findLatestNotice(int userId, String topic) {
+        return messageMapper.selectLatestNotice(userId, topic);
+    }
+
+    // 查询某个主题所包含的通知数量
+    public int findNoticeCount(int userId, String topic) {
+        return messageMapper.selectNoticeCount(userId, topic);
+    }
+
+    // 查询未读的通知数量
+    public int findNoticeUnreadCount(int userId, String topic) {
+        return messageMapper.selectNoticeUnreadCount(userId, topic);
+    }
+
+    // 通知详情
+    // 查询某个主题包含的通知列表
+    public List<Message> findNotices(int userId, String topic, int offset, int limit) {
+        return messageMapper.selectNotices(userId, topic, offset, limit);
     }
 
 }
