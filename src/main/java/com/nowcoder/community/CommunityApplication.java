@@ -21,4 +21,9 @@ public class CommunityApplication {
 
 }
 
-//版本信息： Spring整合Elasticsearch 20191207
+//版本信息： 开发社区搜索功能 20191207
+/*
+*
+
+发现问题：自己给自己造成的“系统通知”无法显示，500错误，message未找到，可能是系统通知没有写入
+* */

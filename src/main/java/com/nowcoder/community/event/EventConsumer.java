@@ -1,8 +1,11 @@
 package com.nowcoder.community.event;
 
 import com.alibaba.fastjson.JSONObject;
+import com.nowcoder.community.entity.DiscussPost;
 import com.nowcoder.community.entity.Event;
 import com.nowcoder.community.entity.Message;
+import com.nowcoder.community.service.DiscussPostService;
+import com.nowcoder.community.service.ElasticSearchService;
 import com.nowcoder.community.service.MessageService;
 import com.nowcoder.community.util.CommunityConstant;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -19,7 +22,8 @@ import java.util.Map;
 /**
  * @author Song Weiwei
  * @date 2019-12-05
- * 事件的消费者
+ * 事件的消费者-发送系统通知
+ * 搜索功能-消费发帖事件
  */
 
 @Component
@@ -29,6 +33,12 @@ public class EventConsumer implements CommunityConstant {
 
     @Autowired
     private MessageService messageService;
+
+    @Autowired
+    private DiscussPostService discussPostService;
+
+    @Autowired
+    private ElasticSearchService elasticSearchService;
 
     // 接收消息
     @KafkaListener(topics = {TOPIC_COMMENT, TOPIC_LIKE, TOPIC_FOLLOW})  //三种消息消费者都接收
@@ -41,6 +51,7 @@ public class EventConsumer implements CommunityConstant {
         Event event = JSONObject.parseObject(record.value().toString(), Event.class);    //把json格式的消息解析成Event对象
         if (event == null) {
             logger.error("消息格式错误!");
+            return;
         }
 
         // 发送站内通知
@@ -63,6 +74,24 @@ public class EventConsumer implements CommunityConstant {
 
         message.setContent(JSONObject.toJSONString(content));
         messageService.addMessage(message);
+    }
 
+    // 消费发帖事件 （将帖子存在ES服务器）
+    @KafkaListener(topics = TOPIC_PUBLISH)
+    public void handlePublishMessage(ConsumerRecord record) {
+        if (record == null || record.value() == null) {
+            logger.error("消息的内容为空!");
+            return;
+        }
+
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);    //把json格式的消息解析成Event对象
+        if (event == null) {
+            logger.error("消息格式错误!");
+            return;
+        }
+
+        // 存到ES服务器
+        DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());
+        elasticSearchService.saveDiscussPost(post);
     }
 }

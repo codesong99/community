@@ -22,6 +22,7 @@ import java.util.Date;
  * @date 2019-11-28
  * 增加评论
  * 发送系统通知-消费者
+ * 增加评论后，触发发帖事件，存到ES服务器
  */
 
 @Controller
@@ -63,6 +64,16 @@ public class CommentController implements CommunityConstant {
             event.setEntityUserId(target.getUserId());
         }
         eventProducer.fireEvent(event);
+
+        // 触发发帖事件
+        if (comment.getEntityType() == ENTITY_TYPE_POST) {  //只有回复给帖子时才触发
+            event = new Event()
+                    .setTopic(TOPIC_PUBLISH)
+                    .setUserId(comment.getUserId())
+                    .setEntityType(ENTITY_TYPE_POST)
+                    .setEntityId(discussPostId);
+            eventProducer.fireEvent(event);
+        }
 
         return "redirect:/discuss/detail/" + discussPostId;
 

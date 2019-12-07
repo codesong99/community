@@ -171,7 +171,7 @@ public class ElasticsearchTests {
                     }
                     HighlightField contentField = hit.getHighlightFields().get("content");
                     if (contentField != null) {
-                        post.setTitle(contentField.getFragments()[0].toString()); //多个结果只高亮显示第一个
+                        post.setContent(contentField.getFragments()[0].toString()); //多个结果只高亮显示第一个
                     }
 
                     list.add(post);

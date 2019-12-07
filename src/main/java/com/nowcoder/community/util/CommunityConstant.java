@@ -7,6 +7,7 @@ package com.nowcoder.community.util;
  * 常量接口 （登陆账号）
  * 常量接口 （显示评论）
  * 常量接口 （系统通知事件主题）
+ * 常量接口 （发帖事件）
  */
 public interface CommunityConstant {
 
@@ -70,4 +71,8 @@ public interface CommunityConstant {
      */
     int SYSTEM_USER_ID = 1;
 
+    /**
+     * 主题：发帖
+     */
+    String TOPIC_PUBLISH = "publish";
 }
