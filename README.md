@@ -47,3 +47,5 @@ spring整合kafka
 发送系统通知
 #### V5.５ 2019年12月６日
 显示系统通知
+#### (V6.1) V6.2 2019年12月7日
+Spring整合Elasticsearch
