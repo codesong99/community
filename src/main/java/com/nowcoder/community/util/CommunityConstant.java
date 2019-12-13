@@ -8,6 +8,7 @@ package com.nowcoder.community.util;
  * 常量接口 （显示评论）
  * 常量接口 （系统通知事件主题）
  * 常量接口 （发帖事件）
+ * 常量接口 （权限）
  */
 public interface CommunityConstant {
 
@@ -75,4 +76,19 @@ public interface CommunityConstant {
      * 主题：发帖
      */
     String TOPIC_PUBLISH = "publish";
+
+    /**
+     * 权限：普通用户
+     */
+    String AUTHORITY_USER = "user";
+
+    /**
+     * 权限：管理员
+     */
+    String AUTHORITY_ADMIN = "admin";
+
+    /**
+     * 权限：版主
+     */
+    String AUTHORITY_MODERATOR = "moderator";
 }

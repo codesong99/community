@@ -23,7 +23,8 @@ import java.util.Map;
  * @date 2019-11-18
  * 首页
  * 统一处理异常
- *  查询主页赞的数量
+ * 查询主页赞的数量
+ * 权限不足页面
  */
 
 @Controller
@@ -71,6 +72,12 @@ public class HomeController implements CommunityConstant {
     @RequestMapping(path = "/error", method = RequestMethod.GET)
     public String getErrorPage() {
         return "/error/500";
+    }
+
+    // 权限不足页面
+    @RequestMapping(path = "denied", method = RequestMethod.GET)
+    public String getDeniedPage() {
+        return "/error/404";
     }
 
 }
