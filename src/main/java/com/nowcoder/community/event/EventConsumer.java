@@ -24,6 +24,7 @@ import java.util.Map;
  * @date 2019-12-05
  * 事件的消费者-发送系统通知
  * 搜索功能-消费发帖事件
+ * 消费删帖事件
  */
 
 @Component
@@ -93,5 +94,22 @@ public class EventConsumer implements CommunityConstant {
         // 存到ES服务器
         DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());
         elasticSearchService.saveDiscussPost(post);
+    }
+
+    // 消费删帖事件
+    @KafkaListener(topics = TOPIC_DELETE)
+    public void handleDeleteMessage(ConsumerRecord record) {
+        if (record == null || record.value() == null) {
+            logger.error("消息的内容为空!");
+            return;
+        }
+
+        Event event = JSONObject.parseObject(record.value().toString(), Event.class);    //把json格式的消息解析成Event对象
+        if (event == null) {
+            logger.error("消息格式错误!");
+            return;
+        }
+
+        elasticSearchService.deleteDiscussPost(event.getEntityId());
     }
 }

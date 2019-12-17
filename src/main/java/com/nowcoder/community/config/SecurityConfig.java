@@ -21,6 +21,7 @@ import java.io.PrintWriter;
  * @author Song Weiwei
  * @date 2019-12-11
  * 授权配置类
+ * 置顶、加精、删除权限
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements CommunityConstant {
@@ -50,6 +51,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                         AUTHORITY_USER,
                         AUTHORITY_ADMIN,
                         AUTHORITY_MODERATOR
+                )
+                .antMatchers(   // 置顶、加精权限
+                    "/discuss/top",
+                        "/discuss/wonderful"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_MODERATOR
+                )
+                .antMatchers(   // 删除权限
+                        "/discuss/delete"
+                )
+                .hasAnyAuthority(
+                        AUTHORITY_ADMIN
                 )
                 .anyRequest().permitAll()
                 .and().csrf().disable();    //禁用CSRF检查

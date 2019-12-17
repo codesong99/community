@@ -16,6 +16,7 @@ import java.util.List;
  * 发布帖子
  * 帖子详情
  * 更新帖子评论数量
+ * 置顶、加精、删除
  */
 @Service
 public class DiscussPostService {
@@ -58,5 +59,15 @@ public class DiscussPostService {
     // 更新帖子评论数量
     public int updateCommentCount(int id, int commentCount) {
         return discussPostMapper.updateCommentCount(id, commentCount);
+    }
+
+    // 更新帖子类型
+    public int updateType(int id, int type) {
+        return discussPostMapper.updateType(id, type);
+    }
+
+    // 更新帖子状态
+    public int updateStatus(int id, int status) {
+        return discussPostMapper.updateStatus(id, status);
     }
 }
