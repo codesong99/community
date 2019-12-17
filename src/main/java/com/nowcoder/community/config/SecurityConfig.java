@@ -22,6 +22,7 @@ import java.io.PrintWriter;
  * @date 2019-12-11
  * 授权配置类
  * 置顶、加精、删除权限
+ * 网站数据统计权限
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements CommunityConstant {
@@ -52,15 +53,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                         AUTHORITY_ADMIN,
                         AUTHORITY_MODERATOR
                 )
-                .antMatchers(   // 置顶、加精权限
-                    "/discuss/top",
-                        "/discuss/wonderful"
+                .antMatchers(
+                    "/discuss/top",         //置顶权限
+                        "/discuss/wonderful"             //加精权限
                 )
                 .hasAnyAuthority(
                         AUTHORITY_MODERATOR
                 )
-                .antMatchers(   // 删除权限
-                        "/discuss/delete"
+                .antMatchers(
+                        "/discuss/delete",   //删除权限
+                        "/data/**"                        //统计网站数据权限
                 )
                 .hasAnyAuthority(
                         AUTHORITY_ADMIN

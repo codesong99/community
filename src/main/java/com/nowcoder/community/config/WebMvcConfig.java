@@ -1,9 +1,6 @@
 package com.nowcoder.community.config;
 
-import com.nowcoder.community.controller.interceptor.AlphaInterceptor;
-import com.nowcoder.community.controller.interceptor.LoginRequiredInterceptor;
-import com.nowcoder.community.controller.interceptor.LoginTicketInterceptor;
-import com.nowcoder.community.controller.interceptor.MessageInterceptor;
+import com.nowcoder.community.controller.interceptor.*;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 登陆拦截器配置
  * 登陆状态拦截器配置（有的操作登录后才能进行）
  * 未读消息数拦截器配置
+ * 网站数据统计拦截器配置
  */
 
 @Configuration
@@ -33,6 +31,9 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Autowired
     private MessageInterceptor messageInterceptor;
+
+    @Autowired
+    private DataInteceptor dataInteceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -53,5 +54,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
         registry.addInterceptor(messageInterceptor)
                 .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");   //排除拦截路径(一些静态资源)
 
+        // 配置网站数据统计拦截器
+        registry.addInterceptor(dataInteceptor)
+                .excludePathPatterns("/**/*.css", "/**/*.js", "/**/*.png", "/**/*.jpg", "/**/*.jpeg");   //排除拦截路径(一些静态资源)
     }
 }

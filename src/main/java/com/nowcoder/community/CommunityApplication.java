@@ -21,4 +21,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 置顶、加精、删除 20191217
+//版本信息： 网站数据统计 20191217
