@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,6 +26,7 @@ import java.util.Map;
  * 统一处理异常
  * 查询主页赞的数量
  * 权限不足页面
+ * 是否按热度显示
  */
 
 @Controller
@@ -41,13 +43,15 @@ public class HomeController implements CommunityConstant {
 
     @RequestMapping(path = "/index", method = RequestMethod.GET)
     //可以返回ModelAndView,也可以返回视图的名字
-    public String getIndexPage(Model model, Page page) {
+    public String getIndexPage(Model model, Page page,
+                               @RequestParam(name = "orderMode", defaultValue = "0") int orderMode) {   //是否按热度排序
         //  方法调用之前，SpringMVC会自动实例化Model和Page，并将Page注入Model.
         //  所以，在thtmeleaf中可以直接访问Page对象中的数据
         page.setRows(discussPostService.findDiscussPostRows(0));
-        page.setPath("/index");
+        page.setPath("/index?orderMode=" + orderMode);
 
-        List<DiscussPost> list = discussPostService.findDiscussPosts(0,page.getOffset(),page.getLimit());
+        List<DiscussPost> list = discussPostService.
+                findDiscussPosts(0,page.getOffset(),page.getLimit(), orderMode);
         List<Map<String, Object>> discussPosts = new ArrayList<>(); //能够封装帖子post和用户User对象
         if(list != null) {
             for (DiscussPost post: list) {
@@ -64,6 +68,7 @@ public class HomeController implements CommunityConstant {
             }
         }
         model.addAttribute("discussPosts", discussPosts);
+        model.addAttribute("orderMode", orderMode);
         //返回模板的路径，resource->templates->index.html
         return "/index";
     }

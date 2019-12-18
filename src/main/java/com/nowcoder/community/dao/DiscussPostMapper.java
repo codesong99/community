@@ -14,13 +14,15 @@ import java.util.List;
  * 帖子详情
  * 更新帖子评论数量
  * 置顶、加精、删除
+ * 更新帖子分数
  */
 
 @Mapper
 public interface DiscussPostMapper {
 
-    //参数不是必须，动态SQL
-    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit);   //userId为0：查询所有 1：按用户查询
+    // 查询帖子
+    // 参数不是必须，动态SQL
+    List<DiscussPost> selectDiscussPosts(int userId, int offset, int limit, int orderMode);   //userId为0：查询所有 1：按用户查询  orderMode默认为0：默认排序 1：热度排序
 
     //@Param注解用于给参数取别名
     //如果只有几个参数，并且在SQL的<if>里使用，则必须加别名
@@ -41,5 +43,8 @@ public interface DiscussPostMapper {
 
     // 更改帖子状态
     int updateStatus(int id, int status);
+
+    // 更新帖子分数
+    int updateScore(int id, double score);
 
 }

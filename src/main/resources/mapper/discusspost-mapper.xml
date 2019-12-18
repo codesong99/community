@@ -19,7 +19,13 @@
         <if test="userId!=0">
             AND user_id = #{userId}
         </if>
-        ORDER BY type DESC, create_time DESC
+        <if test="orderMode == 0">
+            ORDER BY type DESC, create_time DESC
+        </if>
+        <if test="orderMode == 1">
+            ORDER BY type DESC, score desc, create_time DESC
+        </if>
+
         limit #{offset}, #{limit}
     </select>
     
@@ -57,6 +63,11 @@
     <!--更改帖子状态-->
     <update id="updateStatus">
         update discuss_post set status = #{status} where id = #{id}
+    </update>
+
+    <!--更新帖子分数-->
+    <update id="updateScore">
+        update discuss_post set score = #{score} where id = #{id}
     </update>
 
 </mapper>

@@ -10,6 +10,7 @@ package com.nowcoder.community.util;
  * 优化登录模块-登录凭证
  * 优化登录模块-缓存用户信息
  * 网站数据统计
+ * 热帖排行
  */
 public class RedisKeyUtil {
 
@@ -23,6 +24,7 @@ public class RedisKeyUtil {
     private static final String PREFIX_USER = "user";               // 用户信息
     private static final String PREFIX_UV = "uv";                   //独立访客 Unique Vistor
     private static final String PREFIX_DAU = "dau";                 //日活跃用户 Daily Active User
+    private static final String PREFIX_POST = "post";               //帖子分数
 
     // 生成 某个实体的赞 的key
     // like:entity:entityType:entityId -> set(userId)
@@ -81,5 +83,10 @@ public class RedisKeyUtil {
     // 区间活跃用户
     public static String getDAUKey(String startDate, String endDate) {
         return PREFIX_DAU + SPLIT + startDate + SPLIT + endDate;
+    }
+
+    // 帖子分数
+    public static String getPostScoreKey() {
+        return PREFIX_POST + SPLIT + "score";
     }
 }

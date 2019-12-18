@@ -21,4 +21,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 任务调度和执行 示例 20191218
+//版本信息： 热帖排行 20191218
