@@ -21,4 +21,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 热帖排行 20191218
+//版本信息： 生成长图 20191219

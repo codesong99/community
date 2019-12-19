@@ -10,6 +10,7 @@ package com.nowcoder.community.util;
  * 常量接口 （发帖事件）
  * 常量接口 （权限）
  * 常量接口 （删帖事件）
+ * 常量接口 （分享长图）
  */
 public interface CommunityConstant {
 
@@ -82,6 +83,11 @@ public interface CommunityConstant {
      * 主题：删帖
      */
     String TOPIC_DELETE = "delete";
+
+    /**
+     * 主题：分享
+     */
+    String TOPIC_SHARE = "share";
 
     /**
      * 权限：普通用户
