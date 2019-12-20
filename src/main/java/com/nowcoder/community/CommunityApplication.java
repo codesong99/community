@@ -21,4 +21,4 @@ public class CommunityApplication {
 
 }
 
-//版本信息： 生成长图 20191219
+//版本信息： 将文件上传至云服务器 20191220
