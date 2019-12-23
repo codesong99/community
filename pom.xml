@@ -151,7 +151,11 @@
 			<version>2.8.0</version>
 		</dependency>
 
-
+		<!--Actuotor 项目监控-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
 
 	</dependencies>
 

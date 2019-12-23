@@ -8,10 +8,11 @@
 <!--	<meta name="_csrf" th:content="${_csrf.token}">-->
 <!--	<meta name="_csrf_header" th:content="${_csrf.headerName}">-->
 
-	<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>
+	<!--<link rel="icon" href="https://static.nowcoder.com/images/logo_87_87.png"/>-->
+	<link rel="icon" href="https://s2.ax1x.com/2019/12/23/l99Ye1.png"/>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 	<link rel="stylesheet" th:href="@{/css/global.css}" />
-	<title>牛客网-首页</title>
+	<title>贝占口巴-首页</title>
 </head>
 <body>
 <div class="nk-container">
@@ -154,7 +155,7 @@
 						<a class="page-link" th:href="@{${page.path}(current=${page.current-1})}">上一页</a>
 					</li>
 					<li th:class="|page-item ${i==page.current?'active':''}|" th:each="i:${#numbers.sequence(page.from,page.to)}">
-						<a class="page-link" href="#" th:text="${i}">1</a>
+						<a class="page-link" th:href="@{${page.path}(current=${i})}" th:text="${i}">1</a>
 					</li>
 					<li th:class="|page-item ${page.current==page.total?'disabled':''}|">
 						<a class="page-link" th:href="@{${page.path}(current=${page.current+1})}">下一页</a>
@@ -173,7 +174,8 @@
 			<div class="row">
 				<!-- 二维码 -->
 				<div class="col-4 qrcode">
-					<img src="https://uploadfiles.nowcoder.com/app/app_download.png" class="img-thumbnail" style="width:136px;" />
+					<!--<img src="https://uploadfiles.nowcoder.com/app/app_download.png" class="img-thumbnail" style="width:136px;" />-->
+					<img src="https://s2.ax1x.com/2019/12/23/l9p8VP.png" style="width:136px;" />
 				</div>
 				<!-- 公司信息 -->
 				<div class="col-8 detail-info">
@@ -181,26 +183,26 @@
 						<div class="col">
 							<ul class="nav">
 								<li class="nav-item">
-									<a class="nav-link text-light" href="#">关于我们</a>
+									<a class="nav-link text-light" href="#">富强民主</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-light" href="#">加入我们</a>
+									<a class="nav-link text-light" href="#">文明和谐</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-light" href="#">意见反馈</a>
+									<a class="nav-link text-light" href="#">自由平等</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-light" href="#">企业服务</a>
+									<a class="nav-link text-light" href="#">公正法治</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-light" href="#">联系我们</a>
+									<a class="nav-link text-light" href="#">爱国敬业</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link text-light" href="#">免责声明</a>
+									<a class="nav-link text-light" href="#">诚信友善</a>
 								</li>
-								<li class="nav-item">
-									<a class="nav-link text-light" href="#">友情链接</a>
-								</li>
+								<!--<li class="nav-item">
+									<a class="nav-link text-light" href="#">请勿点击</a>
+								</li>-->
 							</ul>
 						</div>
 					</div>
@@ -208,18 +210,18 @@
 						<div class="col">
 							<ul class="nav btn-group-vertical company-info">
 								<li class="nav-item text-white-50">
-									公司地址：北京市朝阳区大屯路东金泉时代3-2708北京牛客科技有限公司
+									Merry Christmas and Happy New Year!
 								</li>
 								<li class="nav-item text-white-50">
-									联系方式：010-60728802(电话)&nbsp;&nbsp;&nbsp;&nbsp;admin@nowcoder.com
+									2020一切顺利！
 								</li>
 								<li class="nav-item text-white-50">
-									牛客科技©2018 All rights reserved
+									联系方式：sww2021@qq.com
 								</li>
 								<li class="nav-item text-white-50">
-									京ICP备14055008号-4 &nbsp;&nbsp;&nbsp;&nbsp;
+									测试阶段暂未备案 &nbsp;&nbsp;&nbsp;&nbsp;
 									<img src="http://static.nowcoder.com/company/images/res/ghs.png" style="width:18px;" />
-									京公网安备 11010502036488号
+									666 左侧二维码为微信打赏
 								</li>
 							</ul>
 						</div>

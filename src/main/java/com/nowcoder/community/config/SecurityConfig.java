@@ -23,6 +23,7 @@ import java.io.PrintWriter;
  * 授权配置类
  * 置顶、加精、删除权限
  * 网站数据统计权限
+ * Actuator监控端点权限
  */
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter implements CommunityConstant {
@@ -62,7 +63,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter implements Comm
                 )
                 .antMatchers(
                         "/discuss/delete",   //删除权限
-                        "/data/**"                        //统计网站数据权限
+                        "/data/**",                       //统计网站数据权限
+                        "/actuator/**"                    //监控端点权限
                 )
                 .hasAnyAuthority(
                         AUTHORITY_ADMIN
