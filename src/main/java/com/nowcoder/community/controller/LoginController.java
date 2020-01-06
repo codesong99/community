@@ -76,7 +76,7 @@ public class LoginController implements CommunityConstant {
     public String register(Model model, User user) {
         Map<String, Object> map = userService.register(user);
         if (map == null || map.isEmpty()) {
-            model.addAttribute("msg", "注册成功，我们已经向您的邮箱发送了一封激活邮件，请尽快激活");
+            model.addAttribute("msg", "注册成功，我们已经向您的邮箱发送了一封激活邮件，请尽快激活（收不到请留意垃圾箱）");
             model.addAttribute("target", "/index");
             return "/site/operate-result";
         } else {

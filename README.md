@@ -77,3 +77,15 @@ Spring整合Elasticsearch
 （V8.1未git，与V8.2一同上传）
 #### V8.2 2019年12月23日
 简单修改前端样式
+#### V1.0 2019年12月24日 正式版本
+ **正式版本**：
+ 
+ 修改了前端样式：尾部
+ 可在开发模式、生产模式之间切换
+#### V1.1 2020年1月6日
+域名备案完成，正式上线版本
+
+**项目启动说明**：
+①注意切换develop和produce模式；
+②在Windows平台，需启动Elasticsearch、zookeeper、kafka，并保证kafka中有“test”、“comment”、“like”、“follow”、“publish”、“delete”、“share”共7个topic；
+③部署到云服务器时，使用centOS7.6，同样要保证kafka中以创建相应主题。
