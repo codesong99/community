@@ -164,7 +164,7 @@ public class EventConsumer implements CommunityConstant {
         String fileName = (String) event.getData().get("fileName");
         String suffix = (String) event.getData().get("suffix");
 
-        // cmd = "e:/wkhtmltopdf/bin/wkhtmltoimage --quality 75 https://www.nowcoder.com F:/javaproject/data/wk-images/2.png";
+        // cmd = "d:/ProgramSoftware/wkhtmltopdf/bin/wkhtmltoimage --quality 75 https://www.nowcoder.com D:/ProjectFiles/data/wk-images/2.png";
         String cmd = wkImageCommand + " --quality 75 "
                 + htmlUrl + " " + wkImageStorage + "/" + fileName + suffix;
         try {
